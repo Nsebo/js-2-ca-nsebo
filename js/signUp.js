@@ -1,6 +1,5 @@
-
-import {API_BASE_URL, CREATE_USER_URL_ENDPOINT,LOGIN_USER_URL_ENDPOINT} from "./settings/api";
-
+import {API_BASE_URL, CREATE_USER_URL,LOGIN_USER_URL} from "./settings/api";
+import {saveToken} from "./utils/storage";
 
 const form = document.querySelector("#signup");
 
@@ -82,15 +81,13 @@ form.addEventListener("submit", function(e){
             "email": email.value,
             "password": password.value,
         }
-        console.log(userData);
-
 
         // API CALL
-        console.log(LOGIN_USER_URL_ENDPOINT);
+        console.log(LOGIN_USER_URL);
 
 
         (async function createUser() {
-            const response = await fetch(`${CREATE_USER_URL_ENDPOINT}`, {
+            const response = await fetch(`${CREATE_USER_URL}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
