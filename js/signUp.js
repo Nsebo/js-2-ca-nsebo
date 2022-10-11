@@ -1,5 +1,8 @@
+
+import {API_BASE_URL, CREATE_USER_URL_ENDPOINT,LOGIN_USER_URL_ENDPOINT} from "./settings/api";
+
+
 const form = document.querySelector("#signup");
-console.log(form)
 
 const userName  = document.querySelector("#userName");
 const userNameError = document.querySelector("#userNameError");
@@ -15,7 +18,7 @@ const confirmPassword = document.querySelector("#confirm_password");
 const confirmPasswordError = document.querySelector("#confirmPasswordError");
 
 const confirmPasswordErrorMessage = document.querySelector("#confirmPasswordErrorMessage");
-console.log(confirmPasswordErrorMessage)
+
 const formErrorMessage = document.querySelector("#form-error-message");
 
 
@@ -64,28 +67,15 @@ form.addEventListener("submit", function(e){
     let isConfirmPasswordErrorMessage = false;
     isConfirmPasswordErrorMessage = validatePassword();
 
-    console.log(isUserName)
-    console.log(isEmail)
-    console.log(isValidEmail)
-    console.log(isPassword)
-    console.log(isConfirmPassword)
-    console.log(isConfirmPasswordErrorMessage)
-
     let isFormValid = isUserName &&
         isEmail &&
         isValidEmail &&
         isPassword &&
         isConfirmPassword &&
         isConfirmPasswordErrorMessage;
-
     if( isFormValid){
 
         console.log("validate SUCCEED ");
-
-        // API CALL
-        console.log(userName.value);
-        console.log(email.value);
-        console.log(password.value);
 
         const userData = {
             "name": userName.value,
@@ -94,7 +84,11 @@ form.addEventListener("submit", function(e){
         }
         console.log(userData);
 
-        const CREATE_USER_URL_ENDPOINT = "https://nf-api.onrender.com/api/v1/social/auth/register";
+
+        // API CALL
+        console.log(LOGIN_USER_URL_ENDPOINT);
+
+
         (async function createUser() {
             const response = await fetch(`${CREATE_USER_URL_ENDPOINT}`, {
                 method: "POST",
