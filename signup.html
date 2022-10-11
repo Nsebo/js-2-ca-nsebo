@@ -5,10 +5,10 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JavaScript Course Assignment</title>
-  <script type="module" src="/js/main.js" defer></script>
+  <script type="module" src="/js/script.js" defer></script>
+  <script type="module" src="/js/signUp.js" defer></script>
 </head>
 <body>
-<!-- component -->
 <div class="text-center mt-24">
   <div class="flex items-center justify-center">
     <svg fill="none" viewBox="0 0 24 24" class="w-12 h-12 text-blue-500" stroke="currentColor">
@@ -24,28 +24,85 @@
    </span>
 </div>
 <div class="flex justify-center my-2 mx-4 md:mx-0">
-  <form class="w-full max-w-xl bg-white rounded-lg shadow-md p-6">
+  <form id="signup" class="w-full max-w-xl bg-white rounded-lg shadow-md p-6">
     <div class="flex flex-wrap -mx-3 mb-6">
       <div class="w-full md:w-full px-3 mb-6">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for='Password'>First Name</label>
-        <input class="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none" type='email'  required>
+        <label  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for='userName' >Username: (Required)</label>
+        <input id="userName" class="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none" name="firstName" placeholder="Enter User Name" type='text'>
+        <span
+                id="userNameError"
+                class="hidden text-sm text-red-500">
+                Please enter your user name</span>
       </div>
       <div class="w-full md:w-full px-3 mb-6">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for='Password'>Email address</label>
-        <input class="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none" type='email'  required>
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for='email'>Email address: (Required)</label>
+        <input
+                id="email"
+                class="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
+                name='email'
+                placeholder="Enter Email"
+                type="text">
+        <span
+                id="emailErrorNotValid"
+                class="hidden text-sm text-red-500"
+        >
+                Email is not valid must be a valid stud.noroff.no or noroff.no email address
+                </span>
+               <span
+                id="emailErrorMessage"
+                class="hidden text-sm text-red-500">
+                Email is required </span>
       </div>
       <div class="w-full md:w-full px-3 mb-6">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for='Password'>Password</label>
-        <input class="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none" type='password' required>
-      </div>
-      <div class="w-full md:w-full px-3 mb-6">
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for='Password'> Confirm Password</label>
-        <input class="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none" type='password' required>
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for='password'>Password: (Required)</label>
+        <input   id="password"
+                 class="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
+                 name="password"
+                 type="password"
+                 placeholder="Enter password">
+        <span
+                id="passwordErrorNotValid"
+                class="hidden text-sm text-red-500"
+        >
+                Password is not valid
+                </span>
+        <span
+                id="passwordErrorMessage"
+                class="hidden text-sm text-red-500"
+        >
+                Password is required and must be over 3 chars
+                </span>
+
       </div>
 
       <div class="w-full md:w-full px-3 mb-6">
-        <button class="appearance-none block w-full bg-blue-600 text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-blue-500 focus:outline-none focus:bg-white focus:border-gray-500">Sign Up</button>
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for='confirmPassword' > Confirm Password: (Required)</label>
+        <input
+                id="confirm_password"
+                class="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"   name="password"
+                type="password"
+                placeholder="Confirm Password"
+        >
+        <span
+                id="confirmPasswordErrorMessage"
+                class="hidden text-sm text-red-500"
+        >
+                Passwords doesn't match
+                </span>
+
+        <span
+                id="confirmPasswordError"
+                class="hidden text-sm text-red-500"
+        >
+                Confirm Password is required and must be over 3 chars
+                </span>
       </div>
+
+      <div class="w-full md:w-full px-3 mb-6">
+        <button class="appearance-none block w-full bg-blue-600 text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-blue-500 focus:outline-none focus:bg-white focus:text-black focus:border-gray-900">Sign Up</button>
+        <p id="form-error-message" class="capitalize text-3xl text-orange-200"></p>
+      </div>
+
       <div class="mx-auto -mb-6 pb-1">
         <span class="text-center text-xs text-gray-700">or sign up with</span>
       </div>
