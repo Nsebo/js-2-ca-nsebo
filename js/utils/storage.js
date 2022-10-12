@@ -12,6 +12,8 @@ function getUserName(){
     if(user){
         return JSON.parse(user)
     }
+    else
+        return "";
 
 }
 

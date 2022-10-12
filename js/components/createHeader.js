@@ -7,13 +7,15 @@ function createHeader() {
   const user = getUserName();
   const { name } = user;
   console.log(name);
-
-  let authLink = `<a  href="login.html">
-            LogIn</a>`;
-
+  let authLink;
   if (user) {
     authLink = `<span>Hello ${name}</span>`;
   }
+  else {
+     authLink = `<a  href="login.html">
+            LogIn</a>`;
+  }
+
   navBar.innerHTML = `
   <ul class="flex gap-x-4">
  <li class="p-4">
