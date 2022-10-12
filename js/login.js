@@ -1,18 +1,20 @@
 import {LOGIN_USER_URL} from "./settings/api";
-import { saveToken} from "./utils/storage";
+import {saveToken, saveUser} from "./utils/storage";
+import createHeader from "./components/createHeader";
 
 const loginForm = document.querySelector("#login-form");
 const email = document.querySelector("#email");
 
 const emailErrorMessage = document.querySelector("#emailErrorMessage");
-
-
 const emailErrorNotValid = document.querySelector("#emailErrorNotValid");
 
 const password = document.querySelector("#password");
 const passwordErrorMessage = document.querySelector("#passwordErrorMessage");
 
 const formErrorMessage = document.querySelector("#form-error-message");
+
+createHeader()
+
 if(loginForm){
     loginForm.addEventListener("submit", function(event){
         event.preventDefault();
@@ -48,6 +50,8 @@ if(loginForm){
                 "email": email.value,
                 "password": password.value
             }
+            console.log(userData);
+
 
             // API CALL
             console.log(LOGIN_USER_URL);
@@ -62,15 +66,22 @@ if(loginForm){
                 });
                 if(response.ok){
                     const data = await response.json();
-
-                    location.href = "../index.html";
+                    console.log(data)
+                    saveToken(data.accessToken)
+                    const userToSave = {
+                        name: data.name,
+                        email: data.email
+                    }
+                   saveUser(userToSave)
+                location.href = "../index.html";
                 }else{
                     const err = await response.json();
-                    throw new Error(err)
+                    const message = `Error: ${err.message}`;
+                    throw new Error(message);
                 }
 
             })().catch(error =>{
-                formErrorMessage.innerHTML = `something went wronf ${error}`;
+                formErrorMessage.innerHTML = `something went wrong ${error}`;
             });
         }else{
             console.log("validate failed")
