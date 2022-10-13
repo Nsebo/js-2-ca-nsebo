@@ -14,8 +14,7 @@ function createHeader() {
                 <a href="/index.html" class="${
                   pathname === '/index.html'
                     ? 'hover:underline text-blue-600 '
-                    : ''
-                }">Home</a>
+                    : ''}">Home</a>
             </li>
             <li class="p-8"> <span>Hello ${name}</span> </li>
             <li class="p-8"><a href="/post-page.html" class="${

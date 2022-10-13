@@ -9,11 +9,6 @@ const postTitleError = document.querySelector('#postTitleError');
 const editorPost = document.querySelector('#editorPost');
 const editorPostError = document.querySelector('#editorPostError');
 
-console.log(postPageForm);
-console.log(postTitle);
-console.log(postTitleError);
-console.log(editorPost);
-console.log(editorPostError);
 
 postPageForm.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -36,19 +31,12 @@ postPageForm.addEventListener('submit', function (event) {
   let isFormValid = isPostTitle && isEditorPost;
 
   if (isFormValid) {
-    console.log('Validation SUCCEEDED!!  🥳');
-    console.log(postTitle.value);
-    console.log(editorPost.value);
-
     const postData = {
       title: postTitle.value,
       body: editorPost.value,
     };
-    console.log(postData);
-    const accessToken = getToken();
-    console.log('accessToken:', accessToken);
-    console.log('POST_PAGE_URL', POST_PAGE_URL);
 
+    const accessToken = getToken();
     (async function CreatePost() {
       const response = await fetch(POST_PAGE_URL,{
         method:"POST",
@@ -58,9 +46,17 @@ postPageForm.addEventListener('submit', function (event) {
         },
         body: JSON.stringify(postData)
       });
-      console.log('post creation response:', response);
-    })();
+      if(response.ok){
+        const data = await response.json();
+        location.href = "/index.html"
+      }else{
+        const error = await response.json();
+        const message = "creating post failed";
+        throw new Error(message)
+      }
+      postPageForm.reset();
+    })().catch(error =>{
+    });
   } else {
-    console.log('Validation FAILED!! 💩');
   }
 });
