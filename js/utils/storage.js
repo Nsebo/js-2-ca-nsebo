@@ -1,20 +1,32 @@
-function saveToken(token){
-    localStorage.setItem("token", token)
+const tokenKey = 'token';
+const user = 'user';
+
+function saveToken(token) {
+  localStorage.setItem('token', token);
 }
 
-function saveUser (user){
-    localStorage.setItem("user", JSON.stringify(user));
+function getToken() {
+  return getFromStorage(tokenKey);
 }
 
-function getUserName(){
-    const user = localStorage.getItem("user");
+function saveUser(user) {
+  localStorage.setItem('user', JSON.stringify(user));
+}
+
+function getUserName() {
+  const user = localStorage.getItem('user');
+  if (user) {
     console.log(user);
-    if(user){
-        return JSON.parse(user)
-    }
-    else
-        return "";
-
+    return JSON.parse(user);
+  } else return '';
+}
+function getFromStorage(key) {
+  const value = localStorage.getItem(key);
+  if (value) {
+    return JSON.parse(value); // convert to JS
+  } else {
+    return [];
+  }
 }
 
-export {saveToken, saveUser, getUserName }
+export { getToken, saveToken, saveUser, getUserName };

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Course Assignment</title>
+    <script type="module" src="/js/script.js" defer></script>
+    <script type="module" src="/js/postPage.js" defer></script>
+</head>
+<body class=" dark:bg-gray-800 bg-white min-h-screen">
+<main class=" relative overflow-hidden">
+    <header class="h-24 sm:h-32 flex items-center z-30 w-full bg-slate-400 ">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <div class="uppercase text-black dark:text-white font-black text-3xl">
+                Nsebook
+            </div>
+            <div id="nav-bar" class="flex items-center ">
+
+                <button class="lg:hidden flex flex-col ml-4">
+                          <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
+                          </span>
+                    <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
+                          </span>
+                    <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
+                          </span>
+                </button>
+            </div>
+        </div>
+    </header>
+</main>
+<div class="container p-8 mx-auto text-center">
+    <form  id="post-page-form">
+        <h1 class="flex text-2xl p-3 bg-fixed">Home</h1>
+        <div>
+            <img class="h-24 w-24 p-4 rounded hover:rounded-lg" src="img/Ayo.png" alt="an image an happy young lady"
+            />
+        </div>
+
+        <div class="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+            <div class="flex flex-col mb-2">
+                <label for="postTitle"></label>
+                <input
+                        id="postTitle"
+                        class="p-2 rounded-md border shadow"
+                        name="postTitle"
+                        type="text"
+                        placeholder="Post title here"
+                />
+                <span id="postTitleError" class="hidden text-sm text-red-500">Post Title is required</span>
+            </div>
+            <div class="py-2 px-4 bg-white rounded-b-lg dark:bg-gray-800">
+                <label for="editor" class="sr-only">Create Post</label>
+                <textarea
+                        id="editorPost"
+                        rows="8"
+                        class="block px-0 w-full text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+                        placeholder="Hey! What's on your mind?"
+                        required=""
+                ></textarea>
+                <span id="editorPostError" class="hidden text-sm text-red-500">
+                Post Description is required
+          </span>
+        </div>
+        <button class="justify-center w-1/4 capitalize rounded-md border border-transparent bg-blue-400 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" type="submit">
+        Create
+        </button>
+    </form>
+
+</body>
+</html>

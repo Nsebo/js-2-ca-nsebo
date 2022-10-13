@@ -1,4 +1,5 @@
 import {LOGIN_USER_URL} from "./settings/api";
+import {validateEmail} from "./utils/validation";
 import {saveToken, saveUser} from "./utils/storage";
 import createHeader from "./components/createHeader";
 
@@ -88,13 +89,4 @@ if(loginForm){
 
         }
     });
-}
-function validateEmail(email){
-    const regEx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@(stud.noroff.no|noroff.no)$/ ;
-    console.log(regEx)
-    if(email.match(regEx)){
-        return true;
-    }else {
-        return false;
-    }
 }
