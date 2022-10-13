@@ -1,5 +1,5 @@
 import { getToken } from './utils/storage';
-import { POST_PAGE_URL } from './settings/api';
+import {POST_PAGE_URL } from "./settings/api";
 
 const postPageForm = document.querySelector('#post-page-form');
 
@@ -50,13 +50,13 @@ postPageForm.addEventListener('submit', function (event) {
     console.log('POST_PAGE_URL', POST_PAGE_URL);
 
     (async function CreatePost() {
-      const response = await fetch(POST_PAGE_URL, {
-        method: 'POST',
+      const response = await fetch(POST_PAGE_URL,{
+        method:"POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
         },
-        body: JSON.stringify(postData),
+        body: JSON.stringify(postData)
       });
       console.log('post creation response:', response);
     })();
