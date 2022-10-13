@@ -6,7 +6,7 @@ function saveToken(token) {
 }
 
 function getToken() {
-  return getFromStorage(tokenKey);
+  return getFromStorage(getToken);
 }
 
 function saveUser(user) {
@@ -20,13 +20,13 @@ function getUserName() {
     return JSON.parse(user);
   } else return '';
 }
+
 function getFromStorage(key) {
   const value = localStorage.getItem(key);
   if (value) {
-    return JSON.parse(value); // convert to JS
+    return JSON.parse(value);
   } else {
     return [];
   }
 }
-
 export { getToken, saveToken, saveUser, getUserName };
