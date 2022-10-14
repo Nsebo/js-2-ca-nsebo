@@ -9,7 +9,9 @@ function validateEmail(email){
 }
 
 function validatePassword(){
+    let password;
     const passwordValue = password.value;
+    let confirmPassword;
     const confirmPasswordValue = confirmPassword.value;
 
     if(!passwordValue){
@@ -21,10 +23,12 @@ function validatePassword(){
 
 
     if(passwordValue !== confirmPasswordValue){
+        let confirmPasswordErrorMessage;
         confirmPasswordErrorMessage.classList.remove("hidden");
         return false;
     }
     else{
+        let confirmPasswordErrorMessage;
         confirmPasswordErrorMessage.classList.add("hidden");
         return true;
     }
