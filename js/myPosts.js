@@ -6,10 +6,10 @@ let now = moment(new Date());
 
 const myPostsContainer = document.querySelector("#myPostsContainer");
 console.log(myPostsContainer);
- console.log(GET_POSTS_URL);
+console.log(GET_POSTS_URL);
 
 const postsNotification = document.querySelector("#postsNotification");
- console.log(postsNotification)
+console.log(postsNotification)
 
 
 const accessToken = getToken()
@@ -17,24 +17,24 @@ const accessToken = getToken()
 console.log("accessToken:", accessToken);
 
 (async function getAllPost(){
-const response = await fetch(GET_POSTS_URL, {
-    method: "GET",
-    headers: {
-  "Authorization":`Bearer ${accessToken}`
-     }
-  })
+    const response = await fetch(GET_POSTS_URL, {
+        method: "GET",
+        headers: {
+            "Authorization":`Bearer ${accessToken}`
+        }
+    })
     console.log(response);
 
-  if(response.ok){
-    const posts = await response.json();
-   console.log("posts", posts);
-  const listOfHtmlPosts = posts.map((item)=>{
-     console.log(item);
-    const postTitle = item.title;
-    const postBody = item.body;
-      console.log(postTitle);
-      console.log(postBody);
-     return(`
+    if(response.ok){
+        const posts = await response.json();
+        console.log("posts", posts);
+        const listOfHtmlPosts = posts.map((item)=>{
+            console.log(item);
+            const postTitle = item.title;
+            const postBody = item.body;
+            console.log(postTitle);
+            console.log(postBody);
+            return(`
      <li class="relative px-4 py-5 bg-white focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50">
            <div class="flex items-center mx-0 mt-2 mb-4 gap-3">
             <img
@@ -55,14 +55,14 @@ const response = await fetch(GET_POSTS_URL, {
           </div>
           </li>
      `)
-  }).join("")
-      console.log("listOfHtmlPosts:", listOfHtmlPosts)
-      myPostsContainer.insertAdjacentHTML("beforeend", listOfHtmlPosts)
-}else{
-      const error = await response.json();
-      throw new Error(error)
-  }
+        }).join("")
+        console.log("listOfHtmlPosts:", listOfHtmlPosts)
+        myPostsContainer.insertAdjacentHTML("beforeend", listOfHtmlPosts)
+    }else{
+        const error = await response.json();
+        throw new Error(error)
+    }
 })().catch(error =>{
- console.log(error);
- console.log("GET POST FAILED")
+    console.log(error);
+    console.log("GET POST FAILED")
 });
