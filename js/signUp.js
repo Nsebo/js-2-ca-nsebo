@@ -66,6 +66,9 @@ form.addEventListener('submit', function (event) {
   }
 
 
+  let isValidPasswordMatch = false;
+ isValidPasswordMatch = validatePassword()
+
  console.log(isUserName)
   console.log(isEmail)
   console.log(isValidEmail)
