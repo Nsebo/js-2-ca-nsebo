@@ -82,40 +82,39 @@
                  type="password"
                  placeholder="Enter password">
         <span
-                id="passwordErrorNotValid"
-                class="hidden text-sm text-red-500"
-        >
-                Password is not valid
-                </span>
-        <span
                 id="passwordErrorMessage"
                 class="hidden text-sm text-red-500"
         >
                 Password is required and must be over 3 chars
                 </span>
-
+        <span
+                id="passwordErrorNotValid"
+                class="hidden text-sm text-red-500"
+        >
+                Password is not valid
+                </span>
       </div>
 
       <div class="w-full md:w-full px-3 mb-6">
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for='confirmPassword' > Confirm Password: (Required)</label>
         <input
                 id="confirm_password"
-                class="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"   name="password"
+                class="p-2 rounded-md"
+                name="password"
                 type="password"
                 placeholder="Confirm Password"
         >
         <span
-                id="confirmPasswordErrorMessage"
+                id="confirmPasswordErrorNotMatching"
                 class="hidden text-sm text-red-500"
         >
                 Passwords doesn't match
                 </span>
-
         <span
                 id="confirmPasswordError"
                 class="hidden text-sm text-red-500"
         >
-                Confirm Password is required and must be over 3 chars
+                Confirm Password is required and must be over 8 chars
                 </span>
       </div>
 

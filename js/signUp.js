@@ -15,11 +15,11 @@ const password = document.querySelector('#password');
 const passwordErrorMessage = document.querySelector('#passwordErrorMessage');
 
 const confirmPassword = document.querySelector('#confirm_password');
+console.log(confirmPassword)
 const confirmPasswordError = document.querySelector('#confirmPasswordError');
-
-const confirmPasswordErrorMessage = document.querySelector(
-  '#confirmPasswordErrorMessage'
-);
+console.log(confirmPasswordError)
+const confirmPasswordErrorNotMatching = document.querySelector('#confirmPasswordErrorNotMatching');
+console.log(confirmPasswordErrorNotMatching)
 
 const formErrorMessage = document.querySelector('#form-error-message');
 
@@ -64,16 +64,24 @@ form.addEventListener('submit', function (event) {
   } else {
     confirmPasswordError.classList.remove('hidden');
   }
-  let isConfirmPasswordErrorMessage = false;
-  isConfirmPasswordErrorMessage = validatePassword();
+
+
+ console.log(isUserName)
+  console.log(isEmail)
+  console.log(isValidEmail)
+  console.log(isPassword)
+  console.log(isConfirmPassword)
+
+
 
   let isFormValid =
     isUserName &&
     isEmail &&
     isValidEmail &&
     isPassword &&
-    isConfirmPassword &&
-    isConfirmPasswordErrorMessage;
+    isConfirmPassword;
+
+
   if (isFormValid) {
     console.log('validate SUCCEED ');
 

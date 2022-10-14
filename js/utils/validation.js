@@ -8,28 +8,18 @@ function validateEmail(email){
     }
 }
 
-function validatePassword(){
-    let password;
-    const passwordValue = password.value;
-    let confirmPassword;
-    const confirmPasswordValue = confirmPassword.value;
-
-    if(!passwordValue){
-        return false
-    }
-    if(!confirmPasswordValue){
+function validatePassword(password, confirmPassword) {
+    console.log(password)
+    console.log(confirmPassword)
+    if (!password) {
         return false;
     }
-
-
-    if(passwordValue !== confirmPasswordValue){
-        let confirmPasswordErrorMessage;
-        confirmPasswordErrorMessage.classList.remove("hidden");
+    if (!confirmPassword) {
         return false;
     }
-    else{
-        let confirmPasswordErrorMessage;
-        confirmPasswordErrorMessage.classList.add("hidden");
+    if (password !== confirmPassword) {
+        return false;
+    } else {
         return true;
     }
 }
