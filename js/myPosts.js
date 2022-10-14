@@ -13,9 +13,7 @@ const postsNotification = document.querySelector("#postsNotification");
 
 
 const accessToken = getToken()
-//if (!accessToken) {
-  //  location.href = "../index.html";
-//}
+
 console.log("accessToken:", accessToken);
 
 (async function getAllPost(){
