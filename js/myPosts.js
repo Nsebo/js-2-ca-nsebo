@@ -34,19 +34,18 @@ const response = await fetch(GET_POSTS_URL, {
             console.log(item);
             const postTitle = item.title;
             const postBody = item.body;
-
-
             console.log(postTitle);
             console.log(postBody);
+
             return(`
     <li class="relative py-3 sm:py-4 bg-white focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50">
      <div class="max-w-2xl mx-auto">
  <div class="p-4 max-w-md bg-white rounded-lg   sm:p-8 dark:bg-gray-800 dark:border-gray-700">
   <div class="flow-root">
    <div class="flex items-center space-x-4">
-            <div class="flex-shrink-0">
-              <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-1.jpg" alt="Neil image">
-            </div>
+           <div class="flex-shrink-0">
+                        <img class="w-8 h-8 rounded-full p-4" src="/img/ayo.png" alt="Neil image">
+                    </div>
             <div class="flex-1 min-w-0">
             <span class="absolute inset-0" aria-hidden="true"></span>
               <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
@@ -59,7 +58,8 @@ const response = await fetch(GET_POSTS_URL, {
             
           </div>
         </li>
-
+        
+        
      `)
   }).join("")
       console.log("listOfHtmlPosts:", listOfHtmlPosts)
