@@ -6,7 +6,7 @@ function saveToken(token) {
 }
 
 function getToken() {
-  const myToken= getFromStorage('token');
+  const myToken = getFromStorage('token');
   return myToken;
 }
 
@@ -30,4 +30,9 @@ function getFromStorage(localStorageKey) {
     return [];
   }
 }
-export { getToken, saveToken, saveUser, getUserName };
+
+function clearStorage(){
+localStorage.clear();
+}
+
+export { getToken, saveToken, saveUser, getUserName, clearStorage };

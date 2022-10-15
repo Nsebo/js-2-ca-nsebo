@@ -74,7 +74,7 @@ if(loginForm){
                         email: data.email
                     }
                    saveUser(userToSave)
-                location.href = "../index.html";
+                location.href = "../welcome-page.html";
                 }else{
                     const err = await response.json();
                     const message = `Error: ${err.message}`;

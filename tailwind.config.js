@@ -1,5 +1,7 @@
 module.exports = {
-    content: ["./*.{html,js}"],
+    content: ["./*.{html,js}",
+              "./js/.js,",
+              "./js/components/nav-bar.js"],
     theme: {
         extend: {},
     },
