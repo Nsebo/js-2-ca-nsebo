@@ -8,6 +8,8 @@ const myPostsContainer = document.querySelector("#myPostsContainer");
 console.log(myPostsContainer);
  console.log(GET_POSTS_URL);
 
+
+
 const postsNotification = document.querySelector("#postsNotification");
  console.log(postsNotification)
 
@@ -61,8 +63,7 @@ const response = await fetch(GET_POSTS_URL, {
         
         
      `)
-  }).join("")
-      console.log("listOfHtmlPosts:", listOfHtmlPosts)
+  }).join("");
       myPostsContainer.insertAdjacentHTML("beforeend", listOfHtmlPosts)
 }else{
       const error = await response.json();
