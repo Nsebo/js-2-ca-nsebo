@@ -36,6 +36,7 @@ const response = await fetch(GET_POSTS_URL, {
             console.log(item);
             const postTitle = item.title;
             const postBody = item.body;
+
             console.log(postTitle);
             console.log(postBody);
 

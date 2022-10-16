@@ -1,6 +1,7 @@
-import { getUserName } from '../utils/storage';
+import {clearStorage, getUserName} from '../utils/storage';
 
 function createHeader() {
+  console.log("createHeader CALLED!!!");
   const { pathname } = document.location;
   const navBar = document.querySelector('#nav-bar');
 
@@ -11,7 +12,7 @@ function createHeader() {
     authLink = `
      <li class="p-8"> <a href="/index.html" class="${pathname === '/index.html' ? 'hover:underline text-blue-600 ' : ''}">Home</a></li>
       <li class="p-8"><a href="/post-page.html" class="${pathname === '/post-page.html' ? 'hover:underline text-blue-600' : ''}">Create post</a></li>
-      <li class="p-8"><a href="/my-posts.html" class="${pathname === '/my-posts.html' ? 'hover:underline text-blue-600' : ''}">My posts</a></li>
+      <li class="p-8"><a href="/my-posts.html" class="${pathname === '/my-posts.html' ? 'hover:underline text-blue-600' : ''}">My Posts</a></li>
        <li class="p-8"> <span>Hello ${name}</span> </li>
        <li class="p-8"> <button id="log-out-btn">LogOut</button></li>
        
@@ -26,6 +27,19 @@ function createHeader() {
    ${authLink}
   </ul>  
   `;
+
+  const logOutBtn = document.querySelector("#log-out-btn");
+
+  if(logOutBtn){
+    logOutBtn.addEventListener("click", ()=>{
+      console.log("i am clicked")
+      clearStorage();
+      window.location.replace("/login.html");
+    })
+  }
+
 }
+
+
 
 export default createHeader;

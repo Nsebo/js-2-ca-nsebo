@@ -14,8 +14,6 @@ const passwordErrorMessage = document.querySelector("#passwordErrorMessage");
 
 const formErrorMessage = document.querySelector("#form-error-message");
 
-createHeader()
-
 if(loginForm){
     loginForm.addEventListener("submit", function(event){
         event.preventDefault();

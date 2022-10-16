@@ -17,7 +17,6 @@ function saveUser(user) {
 function getUserName() {
   const user = localStorage.getItem('user');
   if (user) {
-    console.log(user);
     return JSON.parse(user);
   } else return '';
 }
