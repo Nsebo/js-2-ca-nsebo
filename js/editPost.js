@@ -62,10 +62,8 @@ editPostForm.addEventListener("submit", function (event) {
             "title": postTitle.value,
             "body": postDescription.value
         };
-        console.log("postData: ", postData);
+
         const accessToken = getToken();
-        console.log("EDIT_POST_URL",
-            EDIT_POST_URL);
 
         (async function editPost() {
             const response = await fetch(`${EDIT_POST_URL}/${postId}`, {
@@ -76,7 +74,6 @@ editPostForm.addEventListener("submit", function (event) {
                 },
                 body: JSON.stringify(postData)
             })
-            console.log("post Edition response: ", response)
             if (response.ok) {
                 const data = await response.json();
                 location.href = `single-post.html?post_id=${postId}`;
