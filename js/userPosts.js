@@ -87,7 +87,6 @@ function handleDeleteBtnsEvents (){
 }
 
 function handleDeletePostById (id){
-    console.log("postId", id);
     const deleteUserById = async () => {
         try{
             let response = await fetch(`${DELETE_USER_POST_BY_ID}/${id}`, {
