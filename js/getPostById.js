@@ -22,9 +22,9 @@ const response = await fetch(`${GET_POST_BY_ID_URL}/${postId}`, {
     postDetails. innerHTML = `
     
     <ul>
-  <li>title: ${title}</li>
-    <li>body: ${body}</li>
-    <li>id: ${id}</li>
+  <li>Title: ${title}</li>
+    <li>Body: ${body}</li>
+    <li>Id: ${id}</li>
    </ul>`
 
 }

@@ -2,6 +2,7 @@ import {getToken} from "./utils/storage";
 import {EDIT_POST_URL} from "./settings/api";
 
 const paramString = window.location.search;
+console.log(paramString);
 const searchParam = new URLSearchParams(paramString);
 const accessToken = getToken();
 
@@ -11,11 +12,17 @@ const postTitleError = document.querySelector("#postTitleError");
 const postDescription = document.querySelector("#postDescription");
 const postDescriptionError = document.querySelector("#postDescriptionError");
 
+console.log(editPostForm)
+console.log(postTitle)
+console.log(postTitleError)
+console.log(postDescription)
+console.log(postDescriptionError)
 
 const postId = searchParam.get("post_id");
+console.log("postId:", postId);
 
 async function getPostById(){
-    const response = await fetch(`https://nf-api.onrender.com/api/v1/social/posts/92`, {
+    const response = await fetch(`https://nf-api.onrender.com/api/v1/social/posts/${postId}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -25,7 +32,13 @@ async function getPostById(){
     console.log(response);
     if (response.status === 200) {
         const data = await response.json();
+        console.log("data: ", data);
         const {title, body, created, updated, id} = data;
+        console.log(title);
+        console.log(body);
+        console.log(created);
+        console.log(updated);
+        console.log(id);
         postTitle.value = title;
         postDescription.value = body;
     } else {
@@ -58,11 +71,14 @@ editPostForm.addEventListener("submit", function (event) {
     let isFormValid = isPostTitle && isPostDescription;
 
     if (isFormValid) {
+        console.log("Validation SUCCEEDED!!  🥳");
+        console.log(postTitle.value);
+        console.log(postDescription.value);
         const postData = {
             "title": postTitle.value,
             "body": postDescription.value
         };
-
+        console.log("postData: ", postData);
         const accessToken = getToken();
 
         (async function editPost() {
@@ -74,8 +90,12 @@ editPostForm.addEventListener("submit", function (event) {
                 },
                 body: JSON.stringify(postData)
             })
+            console.log("post Edition response: ", response)
             if (response.ok) {
                 const data = await response.json();
+                console.log(data);
+                console.log("Edit POST SUCCEEDED!!  🥳 🤗🤗");
+                // Redirect to the single post view page
                 location.href = `single-post.html?post_id=${postId}`;
             } else {
                 const err = await response.json();
@@ -84,6 +104,7 @@ editPostForm.addEventListener("submit", function (event) {
             }
             editPostForm.reset();
         })().catch(err => {
+            console.log(err);
         });
     } else {
         console.log("Validation FAILED!! ");

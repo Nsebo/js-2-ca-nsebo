@@ -8,7 +8,9 @@ const myPostsContainer = document.querySelector("#myPostsContainer");
 const postsNotification = document.querySelector(".posts__notification");
 const accessToken = getToken();
 
-async function userPosts(){
+
+async function userPosts(search){
+    let filterPost = [];
     const response = await fetch(GET_USER_POSTS_URL, {
         method: 'GET',
         headers: {
@@ -19,7 +21,15 @@ async function userPosts(){
     if(response.ok){
         const jsonData = await response.json();
         myPostsContainer.innerHTML = "";
-        const myPosts = jsonData.posts;
+        let myPosts = jsonData.posts;
+
+        if(search){
+            debugger;
+            filterPost=myPosts.filter(x=>x.title.includes(search));
+        }
+        if(filterPost.length >0){myPosts=filterPost
+
+        }
         if(!myPosts.length){
             postsNotification.innerHTML = "sorry you have no posts, create your first post now"
         }else{
@@ -27,13 +37,13 @@ async function userPosts(){
             for(let i = 0; i < numberOfPosts;i++ ){
 
                 myPostsContainer.innerHTML += `
-             <li class="relative py-3 sm:py-4 bg-white focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50">
+     <li class="relative py-3 sm:py-4 bg-white focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50">
      <div class="max-w-2xl mx-auto">
     <div class="p-4 max-w-md bg-white rounded-lg   sm:p-8 dark:bg-gray-800 dark:border-gray-700">
        <div class="flex items-center space-x-4">
            <div class="flex-shrink-0">
                         <img class="w-8 h-8 rounded-full p-4" src="/img/ayo.png" alt="Neil image">
-                    </div>
+            </div>
             <div class="flex-1 min-w-0">
             <span class="absolute inset-0" aria-hidden="true">Nsebo</span>
               <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
@@ -54,8 +64,7 @@ async function userPosts(){
             <a href="/edit-post.html?post_id=${myPosts[i].id}" class="block bg-yellow-600 text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-yellow-500 focus:outline-none focus:bg-yellow-500 focus:text-black focus:border-gray-500">Edit</a>
             </div>
           </div>
-        
-             
+         
         </li>
             `
             }
@@ -113,3 +122,13 @@ function handleDeletePostById (id){
     deleteUserById().then(r => {
     });
 }
+
+function searchByTitle(search){
+    debugger;
+    console.log(search);
+}
+
+document.getElementById('search').addEventListener('keyup', function(){
+    console.log(document.getElementById('search').value);
+    userPosts(document.getElementById('search').value);
+});
