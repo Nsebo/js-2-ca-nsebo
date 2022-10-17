@@ -24,7 +24,6 @@ async function userPosts(search){
         let myPosts = jsonData.posts;
 
         if(search){
-            debugger;
             filterPost=myPosts.filter(x=>x.title.includes(search));
         }
         if(filterPost.length >0){myPosts=filterPost
@@ -69,8 +68,7 @@ async function userPosts(search){
             `
             }
         }
-       // const  createdDate = myPosts.created;
-       // const minutesSinceCreated = now.diff(created, "minute");
+
 
     }else{
         const error = await response.json();
