@@ -12,16 +12,16 @@ const postsNotification = document.querySelector("#postsNotification");
 
 const accessToken = getToken()
 if (!accessToken) {
-   location.href = "../index.html";
+    location.href = "../index.html";
 }
 
 (async function getAllPost(search){
-const response = await fetch(GET_POSTS_URL, {
-    method: "GET",
-    headers: {
-  "Authorization":`Bearer ${accessToken}`
-     }
-  })
+    const response = await fetch(GET_POSTS_URL, {
+        method: "GET",
+        headers: {
+            "Authorization":`Bearer ${accessToken}`
+        }
+    })
 
     if(response.ok){
 
@@ -60,13 +60,13 @@ const response = await fetch(GET_POSTS_URL, {
         
         
      `)
-  }).join("");
-      myPostsContainer.insertAdjacentHTML("beforeend", listOfHtmlPosts)
-}else{
-      const error = await response.json();
-      throw new Error(error)
-  }
+        }).join("");
+        myPostsContainer.insertAdjacentHTML("beforeend", listOfHtmlPosts)
+    }else{
+        const error = await response.json();
+        throw new Error(error)
+    }
 })().catch(error =>{
- console.log(error);
- console.log("GET POST FAILED")
+    console.log(error);
+    console.log("GET POST FAILED")
 });
