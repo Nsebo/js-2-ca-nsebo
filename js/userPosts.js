@@ -2,16 +2,11 @@ import moment from "moment";
 import {GET_USER_POSTS_URL, DELETE_USER_POST_BY_ID} from "./settings/api";
 import {getToken} from "./utils/storage";
 
-
-console.log("GET_USER_POSTS_URL:", GET_USER_POSTS_URL);
 let now = moment(new Date())
 
 const myPostsContainer = document.querySelector("#myPostsContainer");
 const postsNotification = document.querySelector(".posts__notification");
-console.log(postsNotification);
 const accessToken = getToken();
-console.log(myPostsContainer);
-console.log(accessToken);
 
 async function userPosts(){
     const response = await fetch(GET_USER_POSTS_URL, {
@@ -23,12 +18,8 @@ async function userPosts(){
     console.log("response:", response);
     if(response.ok){
         const jsonData = await response.json();
-        console.log("GET MY POSTS SUCCEEDED:");
-        console.log("jsonResponse:", jsonData);
-       myPostsContainer.innerHTML = "";
-        console.log("JsonResponse posts:", jsonData.posts);
+        myPostsContainer.innerHTML = "";
         const myPosts = jsonData.posts;
-        console.log(myPosts);
         if(!myPosts.length){
             postsNotification.innerHTML = "sorry you have no posts, create your first post now"
         }else{
@@ -74,12 +65,9 @@ async function userPosts(){
 
     }else{
         const error = await response.json();
-        console.log("error", error)
-        console.log("GET MY POSTS SUCCEEDED:");
     }
 }
 userPosts().then(()=>{
-    console.log("UserPosts called");
     handleDeleteBtnsEvents();
 
     })
@@ -88,15 +76,11 @@ userPosts().then(()=>{
 });
 function handleDeleteBtnsEvents (){
     const deleteBtns = document.getElementsByClassName("delete-post-btn");
-    console.log(deleteBtns);
     const totalNumberOfDeleteBtns = deleteBtns.length;
     for(let i = 0; i < deleteBtns.length;i++){
-        console.log(i);
+
         deleteBtns[i].addEventListener("click", function(){
-            console.log(`${i} you clicked me`);
-            console.log(this.dataset);
-            console.log(this.dataset.id);
-            console.log(this.getAttribute("data-id"));
+
             handleDeletePostById(this.dataset.id)
         })
     }
@@ -112,7 +96,6 @@ function handleDeletePostById (id){
         "Authorization": `Bearer ${accessToken}`
     }
 });
-            console.log(response);
             if(response.status === 200){
                 userPosts().then(()=>{
                     handleDeleteBtnsEvents();
