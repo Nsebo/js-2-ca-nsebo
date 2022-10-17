@@ -10,6 +10,7 @@ export default {
                 postPage: resolve(__dirname, 'post-page.html'),
                 welcomePage: resolve(__dirname, 'welcome-page.html'),
                 singlePost: resolve(__dirname, 'single-post.html'),
+                editPost: resolve(__dirname, 'edit-post.html'),
             },
         },
     },

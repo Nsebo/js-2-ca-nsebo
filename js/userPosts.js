@@ -54,18 +54,17 @@ async function userPosts(){
               </p>
                 </div>
                <span>${myPosts[i].id}</span>
-               <div class="flex">
+              <div class="flex gap-4">
              <button 
              data-id="${myPosts[i].id}"
              class="delete-post-btn  block bg-red-600 text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-red-500 focus:outline-none focus:bg-red-500 focus:text-black focus:border-gray-500">
              Delete
             </button>
-            
-          </div>
+            <a href="/edit-post.html?post_id=${myPosts[i].id}" class="block bg-yellow-600 text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-yellow-500 focus:outline-none focus:bg-yellow-500 focus:text-black focus:border-gray-500">Edit</a>
             </div>
           </div>
         
-           
+             
         </li>
             `
             }
@@ -80,6 +79,7 @@ async function userPosts(){
     }
 }
 userPosts().then(()=>{
+    console.log("UserPosts called");
     handleDeleteBtnsEvents();
 
     })
