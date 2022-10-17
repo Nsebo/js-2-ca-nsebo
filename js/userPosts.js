@@ -15,7 +15,7 @@ async function userPosts(){
             'Authorization': `Bearer ${accessToken}`
         }
     })
-    console.log("response:", response);
+    
     if(response.ok){
         const jsonData = await response.json();
         myPostsContainer.innerHTML = "";

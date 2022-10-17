@@ -5,20 +5,15 @@ import moment from "moment";
 let now = moment(new Date());
 
 const myPostsContainer = document.querySelector("#myPostsContainer");
-console.log(myPostsContainer);
- console.log(GET_POSTS_URL);
-
-
 
 const postsNotification = document.querySelector("#postsNotification");
- console.log(postsNotification)
+
 
 
 const accessToken = getToken()
-//if (!accessToken) {
-  //  location.href = "../index.html";
-//}
-console.log("accessToken:", accessToken);
+if (!accessToken) {
+   location.href = "../index.html";
+}
 
 (async function getAllPost(){
 const response = await fetch(GET_POSTS_URL, {
@@ -27,7 +22,6 @@ const response = await fetch(GET_POSTS_URL, {
   "Authorization":`Bearer ${accessToken}`
      }
   })
-    console.log(response);
 
     if(response.ok){
         const posts = await response.json();
