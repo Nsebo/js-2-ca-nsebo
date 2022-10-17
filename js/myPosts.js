@@ -31,14 +31,10 @@ const response = await fetch(GET_POSTS_URL, {
 
     if(response.ok){
         const posts = await response.json();
-        console.log("posts", posts);
         const listOfHtmlPosts = posts.map((item)=>{
-            console.log(item);
+
             const postTitle = item.title;
             const postBody = item.body;
-
-            console.log(postTitle);
-            console.log(postBody);
 
             return(`
     <li class="relative py-3 sm:py-4 bg-white focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50">
@@ -50,6 +46,7 @@ const response = await fetch(GET_POSTS_URL, {
                         <img class="w-8 h-8 rounded-full p-4" src="/img/ayo.png" alt="Neil image">
                     </div>
             <div class="flex-1 min-w-0">
+               <a href="/single-post.html?post_id=${item.id}" class="block focus:outline-none">
             <span class="absolute inset-0" aria-hidden="true"></span>
               <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                ${postTitle}
@@ -57,6 +54,7 @@ const response = await fetch(GET_POSTS_URL, {
               <p class="text-sm text-gray-500 truncate dark:text-gray-400">
                ${postBody}
               </p>
+              </a>
             </div>
             
           </div>
