@@ -7,11 +7,13 @@ console.log("GET_USER_POSTS_URL:", GET_USER_POSTS_URL);
 let now = moment(new Date())
 
 const myPostsContainer = document.querySelector("#myPostsContainer");
+const postsNotification = document.querySelector(".posts__notification");
+console.log(postsNotification);
 const accessToken = getToken();
 console.log(myPostsContainer);
 console.log(accessToken);
 
-(async function userPosts(){
+async function userPosts(){
     const response = await fetch(GET_USER_POSTS_URL, {
         method: 'GET',
         headers: {
@@ -23,15 +25,17 @@ console.log(accessToken);
         const jsonData = await response.json();
         console.log("GET MY POSTS SUCCEEDED:");
         console.log("jsonResponse:", jsonData);
+       myPostsContainer.innerHTML = "";
         console.log("JsonResponse posts:", jsonData.posts);
         const myPosts = jsonData.posts;
-        console.log(myPosts)
-        const numberOfPosts = myPosts.length;
-       // const  createdDate = myPosts.created;
-       // const minutesSinceCreated = now.diff(created, "minute");
-        for(let i = 0; i < numberOfPosts;i++ ){
+        console.log(myPosts);
+        if(!myPosts.length){
+            postsNotification.innerHTML = "sorry you have no posts, create your first post now"
+        }else{
+            const numberOfPosts = myPosts.length;
+            for(let i = 0; i < numberOfPosts;i++ ){
 
-            myPostsContainer.innerHTML += `
+                myPostsContainer.innerHTML += `
              <li class="relative py-3 sm:py-4 bg-white focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50">
      <div class="max-w-2xl mx-auto">
     <div class="p-4 max-w-md bg-white rounded-lg   sm:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -53,9 +57,10 @@ console.log(accessToken);
                <div class="flex">
              <button 
              data-id="${myPosts[i].id}"
-             class="delete-post-btn appearance-none block bg-red-600 text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-red-500 focus:outline-none focus:bg-red-500 focus:text-black focus:border-gray-500">
+             class="delete-post-btn  block bg-red-600 text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-red-500 focus:outline-none focus:bg-red-500 focus:text-black focus:border-gray-500">
              Delete
             </button>
+            
           </div>
             </div>
           </div>
@@ -63,30 +68,66 @@ console.log(accessToken);
            
         </li>
             `
+            }
         }
+       // const  createdDate = myPosts.created;
+       // const minutesSinceCreated = now.diff(created, "minute");
+
     }else{
         const error = await response.json();
         console.log("error", error)
         console.log("GET MY POSTS SUCCEEDED:");
     }
-})()
-    .then(()=>{
-        const deleteBtns = document.getElementsByClassName("delete-post-btn");
-        console.log(deleteBtns);
-        const totalNumberOfDeleteBtns = deleteBtns.length;
-        for(let i = 0; i < deleteBtns.length;i++){
-            console.log(i);
-            deleteBtns[i].addEventListener("click", function(){
-                console.log(`${i} you clicked me`);
-                console.log(this.dataset);
-                console.log(this.dataset.id);
-                console.log(this.getAttribute("data-id"));
-                // handleDeletePostById(this.dataset.id)
-            })
-        }
+}
+userPosts().then(()=>{
+    handleDeleteBtnsEvents();
 
     })
     .catch((error)=>{
 
 });
+function handleDeleteBtnsEvents (){
+    const deleteBtns = document.getElementsByClassName("delete-post-btn");
+    console.log(deleteBtns);
+    const totalNumberOfDeleteBtns = deleteBtns.length;
+    for(let i = 0; i < deleteBtns.length;i++){
+        console.log(i);
+        deleteBtns[i].addEventListener("click", function(){
+            console.log(`${i} you clicked me`);
+            console.log(this.dataset);
+            console.log(this.dataset.id);
+            console.log(this.getAttribute("data-id"));
+            handleDeletePostById(this.dataset.id)
+        })
+    }
+}
 
+function handleDeletePostById (id){
+    console.log("postId", id);
+    const deleteUserById = async () => {
+        try{
+            let response = await fetch(`${DELETE_USER_POST_BY_ID}/${id}`, {
+    method: "DELETE",
+    headers:{
+        "Authorization": `Bearer ${accessToken}`
+    }
+});
+            console.log(response);
+            if(response.status === 200){
+                userPosts().then(()=>{
+                    handleDeleteBtnsEvents();
+                });
+            }else{
+                const err = await response.json();
+                const errMessage = `something went wring ${err}`
+                throw Error(errMessage)
+            }
+        }
+        catch (error){
+            console.log(error)
+
+        }
+    }
+    deleteUserById().then(r => {
+    });
+}
