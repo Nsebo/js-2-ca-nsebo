@@ -38,11 +38,17 @@ async function userPosts(search){
                 myPostsContainer.innerHTML += `
      <li class="relative py-3 sm:py-4 bg-white focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50">
      <div class="max-w-2xl mx-auto">
-    <div class="p-4 max-w-md bg-white rounded-lg   sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <div class="p-4 max-w-md bg-white rounded-lg  md:p-12 dark:bg-gray-800 dark:border-gray-700">
+     <div class="flex items-center mx-0 mt-2 mb-4 gap-3">
+            <img
+              class="h-8 w-8 rounded-lg"
+              src="./img/ayo.png"
+              alt="Kira"
+            />
+            
+          </div>
        <div class="flex items-center space-x-4">
-           <div class="flex-shrink-0">
-                        <img class="w-8 h-8 rounded-full p-4" src="/img/ayo.png" alt="Neil image">
-            </div>
+          
             <div class="flex-1 min-w-0">
             <span class="absolute inset-0" aria-hidden="true">Nsebo</span>
               <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
