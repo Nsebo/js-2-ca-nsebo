@@ -1,24 +1,24 @@
-const tokenKey = 'token';
-const user = 'user';
+const tokenKey = "token";
+const user = "user";
 
 function saveToken(token) {
-  localStorage.setItem('token', token);
+  localStorage.setItem("token", token);
 }
 
 function getToken() {
-  const myToken = getFromStorage('token');
+  const myToken = getFromStorage("token");
   return myToken;
 }
 
 function saveUser(user) {
-  localStorage.setItem('user', JSON.stringify(user));
+  localStorage.setItem("user", JSON.stringify(user));
 }
 
 function getUserName() {
-  const user = localStorage.getItem('user');
+  const user = localStorage.getItem("user");
   if (user) {
     return JSON.parse(user);
-  } else return '';
+  } else return "";
 }
 
 function getFromStorage(localStorageKey) {
@@ -30,8 +30,8 @@ function getFromStorage(localStorageKey) {
   }
 }
 
-function clearStorage(){
-localStorage.clear();
+function clearStorage() {
+  localStorage.clear();
 }
 
 export { getToken, saveToken, saveUser, getUserName, clearStorage };

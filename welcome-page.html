@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> My Posts Page || JavaScript Course Assignment</title>
-  <script type="module" src="/js/script.js" defer></script>
-  <script type="module" src="/js/login.js" defer></script>
-<!--  <script type="module" src="/js/signUp.js" defer></script>-->
-</head>
-<body>
-<main class="dark:bg-gray-800 bg-white relative overflow-hidden  ">
-  <header class="h-24 sm:h-32 flex items-center z-30 w-full bg-slate-400 ">
-    <div class="container mx-auto px-6 flex items-center justify-between">
-      <div class="uppercase text-black dark:text-white font-black text-3xl">
-        Nsebook
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Posts Page || JavaScript Course Assignment</title>
+    <script type="module" src="/js/script.js" defer></script>
+    <script type="module" src="/js/login.js" defer></script>
+    <!--  <script type="module" src="/js/signUp.js" defer></script>-->
+  </head>
+  <body>
+    <main class="dark:bg-gray-800 bg-white relative overflow-hidden">
+      <header class="h-24 sm:h-32 flex items-center z-30 w-full bg-slate-400">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+          <div class="uppercase text-black dark:text-white font-black text-3xl">
+            Nsebook
+          </div>
+          <div id="nav-bar" class="flex items-center">
+            <button class="lg:hidden flex flex-col ml-4">
+              <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
+              <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
+              <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
+            </button>
+          </div>
+        </div>
+      </header>
+    </main>
+    <div
+      class="flex flex-col gap-y-4 justify-start items-center p-8 h-screen posts"
+    >
+      <h1 class="text-3xl text-gray-700 underline">
+        <span class="text-blue-600">Welcome to Nsebo Space</span>
+      </h1>
+
+      <div class="container py-6 mx-auto">
+        <ul
+          id="myPostsContainer"
+          role="list"
+          class="divide-y divide-gray-200"
+        ></ul>
       </div>
-      <div id="nav-bar" class="flex items-center">
-        <button class="lg:hidden flex flex-col ml-4">
-          <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
-          <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
-          <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
-        </button>
-      </div>
+      <div
+        id="postsNotification"
+        class="posts__notification text-3xl text-yellow-500 capitalize"
+      ></div>
     </div>
-  </header>
-</main>
-<div class="flex flex-col gap-y-4 justify-start items-center p-8 h-screen posts">
-  <h1 class="text-3xl text-gray-700 underline">
-    <span class="text-blue-600 ">Welcome to Nsebo Space</span>
-  </h1>
-
-  <div class="container py-6 mx-auto">
-    <ul id="myPostsContainer" role="list" class="divide-y divide-gray-200">
-
-    </ul>
-  </div>
-  <div id="postsNotification" class="posts__notification text-3xl text-yellow-500 capitalize"></div>
-</div>
-
-</body>
+  </body>
 </html>

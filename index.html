@@ -1,71 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HOMEPAGE || JavaScript Course Assignment</title>
-  <script type="module" src="/js/login.js" defer></script>
-  <script type="module" src="/js/myPosts.js" defer></script>
-  <script type="module" src="/js/script.js" defer></script>
-</head>
-<body>
-<main class="dark:bg-gray-800 bg-white relative overflow-hidden h-screen">
-  <header class="h-24 sm:h-32 flex items-center z-30 w-full bg-slate-400">
-    <div class="container mx-auto px-6 flex items-center justify-between">
-      <div class="uppercase cursor-pointer text-blue-900 dark:text-white font-black text-3xl">
-        Nsebook
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOMEPAGE || JavaScript Course Assignment</title>
+    <script type="module" src="/js/login.js" defer></script>
+    <script type="module" src="/js/myPosts.js" defer></script>
+    <script type="module" src="/js/script.js" defer></script>
+  </head>
+  <body>
+    <main class="dark:bg-gray-800 bg-white relative overflow-hidden h-screen">
+      <header class="h-24 sm:h-32 flex items-center z-30 w-full bg-slate-400">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+          <div
+            class="uppercase cursor-pointer text-blue-900 dark:text-white font-black text-3xl"
+          >
+            Nsebook
+          </div>
+          <div id="nav-bar" class="flex items-center">
+            <button class="lg:hidden flex flex-col ml-4">
+              <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
+              <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
+              <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
+            </button>
+          </div>
+        </div>
+      </header>
+      <div
+        class="flex flex-col gap-y-4 justify-start items-center p-8 h-screen posts"
+      >
+        <h1 class="text-3xl text-gray-700 underline">
+          <span class="text-blue-600">Latest Posts</span>
+        </h1>
+
+        <div class="container py-6 mx-auto">
+          <ul
+            id="myPostsContainer"
+            role="list"
+            class="divide-y divide-gray-200"
+          ></ul>
+        </div>
+        <div
+          id="postsNotification"
+          class="posts__notification text-3xl text-yellow-500 capitalize"
+        ></div>
       </div>
-      <div id="nav-bar" class="flex items-center ">
+    </main>
 
-        <button class="lg:hidden flex flex-col ml-4">
-                    <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
-                    </span>
-          <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
-                    </span>
-          <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
-                    </span>
-        </button>
+    <footer
+      class="p-4 bg-white rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-900"
+    >
+      <div class="sm:flex sm:items-center sm:justify-between">
+        <a href="#" class="flex items-center mb-4 sm:mb-0">
+          <div
+            class="uppercase text-darkBlue-500 dark:text-white font-black text-3xl"
+          >
+            Nsebook
+          </div>
+        </a>
+        <ul
+          class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400"
+        >
+          <li>
+            <a href="index.html" class="mr-4 hover:underline md:mr-6">Home</a>
+          </li>
+          <li>
+            <a href="#" class="mr-4 hover:underline md:mr-6">Profile</a>
+          </li>
+          <li>
+            <a href="#" class="mr-4 hover:underline md:mr-6">Post</a>
+          </li>
+        </ul>
       </div>
-    </div>
-  </header>
-  <div class="flex flex-col gap-y-4 justify-start items-center p-8 h-screen posts">
-    <h1 class="text-3xl text-gray-700 underline">
-      <span class="text-blue-600">Latest Posts</span>
-    </h1>
-
-    <div class="container py-6 mx-auto">
-      <ul id="myPostsContainer" role="list" class="divide-y divide-gray-200">
-
-      </ul>
-    </div>
-    <div id="postsNotification" class="posts__notification text-3xl text-yellow-500 capitalize"></div>
-  </div>
-</main>
-
-<footer class="p-4 bg-white rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-900">
-  <div class="sm:flex sm:items-center sm:justify-between">
-    <a href="#" class="flex items-center mb-4 sm:mb-0">
-      <div class="uppercase text-darkBlue-500 dark:text-white font-black text-3xl">
-        Nsebook
-      </div>
-    </a>
-    <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
-      <li>
-        <a href="index.html" class="mr-4 hover:underline md:mr-6 ">Home</a>
-      </li>
-      <li>
-        <a href="#" class="mr-4 hover:underline md:mr-6 ">Profile</a>
-      </li>
-      <li>
-        <a href="#" class="mr-4 hover:underline md:mr-6 ">Post</a>
-      </li>
-    </ul>
-  </div>
-  <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8">
-  <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022
-    <a href="#" class="hover:underline">Nsebo Course Assignment</a>. All Rights Reserved.
-    </span>
-</footer>
-</body>
+      <hr
+        class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
+      />
+      <span
+        class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"
+        >© 2022 <a href="#" class="hover:underline">Nsebo Course Assignment</a>.
+        All Rights Reserved.
+      </span>
+    </footer>
+  </body>
 </html>

@@ -1,77 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> My Posts Page || JavaScript Course Assignment</title>
-  <script type="module" src="/js/script.js" defer></script>
-  <script type="module" src="/js/userPosts.js" defer></script>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Posts Page || JavaScript Course Assignment</title>
+    <script type="module" src="/js/script.js" defer></script>
+    <script type="module" src="/js/userPosts.js" defer></script>
+  </head>
+  <body>
+    <main class="dark:bg-gray-800 bg-white relative overflow-hidden">
+      <header class="h-24 sm:h-32 flex items-center z-30 w-full bg-slate-400">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+          <div
+            class="uppercase cursor-pointer text-blue-900 dark:text-white font-black text-3xl"
+          >
+            Nsebook
+          </div>
+          <div>
+            <input
+              type="search"
+              id="search"
+              class="peer cursor-pointer relative z-10 h-10 w-6 rounded-full border bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-black focus:pl-16 focus:pr-4"
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="absolute inset-y-0 my-auto h-8 w-12 border-r border-transparent stroke-gray-500 px-3.5 peer-focus:border-black peer-focus:stroke-black"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </div>
 
-</head>
-<body>
-<main class="dark:bg-gray-800 bg-white relative overflow-hidden  ">
-  <header class="h-24 sm:h-32 flex items-center z-30 w-full bg-slate-400 ">
-    <div class="container mx-auto px-6 flex items-center justify-between">
-      <div class="uppercase cursor-pointer text-blue-900 dark:text-white font-black text-3xl">
-        Nsebook
-      </div>
-      <div>
-        <input type="search"
-               id="search"
-               class="peer cursor-pointer relative z-10 h-10 w-6 rounded-full border bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-black focus:pl-16 focus:pr-4" />
-        <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-y-0 my-auto h-8 w-12 border-r border-transparent stroke-gray-500 px-3.5 peer-focus:border-black peer-focus:stroke-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-      </div>
+          <div id="nav-bar" class="flex items-center">
+            <button class="lg:hidden flex flex-col ml-4">
+              <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
+              <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
+              <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
+            </button>
+          </div>
+        </div>
+      </header>
+    </main>
+    <div
+      class="flex flex-col gap-y-4 justify-start items-center p-8 h-screen posts"
+    >
+      <h1 class="text-3xl text-gray-700 underline">
+        <span class="text-blue-600">My Posts</span>
+      </h1>
 
-      <div id="nav-bar" class="flex items-center">
-        <button class="lg:hidden flex flex-col ml-4">
-          <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
-          <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
-          <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
-        </button>
+      <div class="container py-6 mx-auto">
+        <ul
+          id="myPostsContainer"
+          role="list"
+          class="divide-y divide-gray-200"
+        ></ul>
       </div>
+      <div
+        id="postsNotification"
+        class="posts__notification text-3xl text-yellow-500 capitalize"
+      ></div>
     </div>
 
-  </header>
-</main>
-<div class="flex flex-col gap-y-4 justify-start items-center p-8 h-screen posts">
-  <h1 class="text-3xl text-gray-700 underline">
-    <span class="text-blue-600">My Posts</span>
-  </h1>
-
-  <div class="container py-6 mx-auto">
-    <ul id="myPostsContainer" role="list" class="divide-y divide-gray-200">
-
-    </ul>
-  </div>
-  <div id="postsNotification" class="posts__notification text-3xl text-yellow-500 capitalize"></div>
-</div>
-
-<footer class="p-4 bg-white rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-900">
-  <div class="sm:flex sm:items-center sm:justify-between">
-    <a href="#" class="flex items-center mb-4 sm:mb-0">
-      <div class="uppercase text-darkBlue-500 dark:text-white font-black text-3xl">
-        Nsebook
+    <footer
+      class="p-4 bg-white rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-900"
+    >
+      <div class="sm:flex sm:items-center sm:justify-between">
+        <a href="#" class="flex items-center mb-4 sm:mb-0">
+          <div
+            class="uppercase text-darkBlue-500 dark:text-white font-black text-3xl"
+          >
+            Nsebook
+          </div>
+        </a>
+        <ul
+          class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400"
+        >
+          <li>
+            <a href="index.html" class="mr-4 hover:underline md:mr-6">Home</a>
+          </li>
+          <li>
+            <a href="#" class="mr-4 hover:underline md:mr-6">Profile</a>
+          </li>
+          <li>
+            <a href="#" class="mr-4 hover:underline md:mr-6">Post</a>
+          </li>
+        </ul>
       </div>
-    </a>
-    <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
-      <li>
-        <a href="index.html" class="mr-4 hover:underline md:mr-6 ">Home</a>
-      </li>
-      <li>
-        <a href="#" class="mr-4 hover:underline md:mr-6 ">Profile</a>
-      </li>
-      <li>
-        <a href="#" class="mr-4 hover:underline md:mr-6 ">Post</a>
-      </li>
-    </ul>
-  </div>
-  <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8">
-  <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022
-    <a href="#" class="hover:underline">Nsebo Course Assignment</a>. All Rights Reserved.
-    </span>
-</footer>
-</body>
+      <hr
+        class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
+      />
+      <span
+        class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"
+        >© 2022 <a href="#" class="hover:underline">Nsebo Course Assignment</a>.
+        All Rights Reserved.
+      </span>
+    </footer>
+  </body>
 </html>

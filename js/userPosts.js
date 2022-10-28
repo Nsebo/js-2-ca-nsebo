@@ -1,41 +1,40 @@
 import moment from "moment";
-import {GET_USER_POSTS_URL, DELETE_USER_POST_BY_ID} from "./settings/api";
-import {getToken} from "./utils/storage";
+import { GET_USER_POSTS_URL, DELETE_USER_POST_BY_ID } from "./settings/api";
+import { getToken } from "./utils/storage";
 
-let now = moment(new Date())
+let now = moment(new Date());
 
 const myPostsContainer = document.querySelector("#myPostsContainer");
 const postsNotification = document.querySelector(".posts__notification");
 const accessToken = getToken();
 
+async function userPosts(search) {
+  let filterPost = [];
+  const response = await fetch(GET_USER_POSTS_URL, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
 
-async function userPosts(search){
-    let filterPost = [];
-    const response = await fetch(GET_USER_POSTS_URL, {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${accessToken}`
-        }
-    })
+  if (response.ok) {
+    const jsonData = await response.json();
+    myPostsContainer.innerHTML = "";
+    let myPosts = jsonData.posts;
 
-    if(response.ok){
-        const jsonData = await response.json();
-        myPostsContainer.innerHTML = "";
-        let myPosts = jsonData.posts;
-
-        if(search){
-            filterPost=myPosts.filter(x=>x.title.includes(search));
-        }
-        if(filterPost.length >0){myPosts=filterPost
-
-        }
-        if(!myPosts.length){
-            postsNotification.innerHTML = "sorry you have no posts, create your first post now"
-        }else{
-            const numberOfPosts = myPosts.length;
-            for(let i = 0; i < numberOfPosts;i++ ){
-
-                myPostsContainer.innerHTML += `
+    if (search) {
+      filterPost = myPosts.filter((x) => x.title.includes(search));
+    }
+    if (filterPost.length > 0) {
+      myPosts = filterPost;
+    }
+    if (!myPosts.length) {
+      postsNotification.innerHTML =
+        "sorry you have no posts, create your first post now";
+    } else {
+      const numberOfPosts = myPosts.length;
+      for (let i = 0; i < numberOfPosts; i++) {
+        myPostsContainer.innerHTML += `
      <li class="relative py-3 sm:py-4 bg-white focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50">
      <div class="max-w-2xl mx-auto">
     <div class="p-4 max-w-md bg-white rounded-lg   sm:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -65,68 +64,59 @@ async function userPosts(search){
           </div>
          
         </li>
-            `
-            }
-        }
-
-
-    }else{
-        const error = await response.json();
+            `;
+      }
     }
+  } else {
+    const error = await response.json();
+  }
 }
-userPosts().then(()=>{
+userPosts()
+  .then(() => {
     handleDeleteBtnsEvents();
-
-    })
-    .catch((error)=>{
-
-});
-function handleDeleteBtnsEvents (){
-    const deleteBtns = document.getElementsByClassName("delete-post-btn");
-    const totalNumberOfDeleteBtns = deleteBtns.length;
-    for(let i = 0; i < deleteBtns.length;i++){
-
-        deleteBtns[i].addEventListener("click", function(){
-
-            handleDeletePostById(this.dataset.id)
-        })
-    }
-}
-
-function handleDeletePostById (id){
-    const deleteUserById = async () => {
-        try{
-            let response = await fetch(`${DELETE_USER_POST_BY_ID}/${id}`, {
-    method: "DELETE",
-    headers:{
-        "Authorization": `Bearer ${accessToken}`
-    }
-});
-            if(response.status === 200){
-                userPosts().then(()=>{
-                    handleDeleteBtnsEvents();
-                });
-            }else{
-                const err = await response.json();
-                const errMessage = `something went wring ${err}`
-                throw Error(errMessage)
-            }
-        }
-        catch (error){
-            console.log(error)
-
-        }
-    }
-    deleteUserById().then(r => {
+  })
+  .catch((error) => {});
+function handleDeleteBtnsEvents() {
+  const deleteBtns = document.getElementsByClassName("delete-post-btn");
+  const totalNumberOfDeleteBtns = deleteBtns.length;
+  for (let i = 0; i < deleteBtns.length; i++) {
+    deleteBtns[i].addEventListener("click", function () {
+      handleDeletePostById(this.dataset.id);
     });
+  }
 }
 
-function searchByTitle(search){
-    debugger;
-    console.log(search);
+function handleDeletePostById(id) {
+  const deleteUserById = async () => {
+    try {
+      let response = await fetch(`${DELETE_USER_POST_BY_ID}/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      if (response.status === 200) {
+        userPosts().then(() => {
+          handleDeleteBtnsEvents();
+        });
+      } else {
+        const err = await response.json();
+        const errMessage = `something went wring ${err}`;
+        throw Error(errMessage);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  deleteUserById().then((r) => {});
 }
 
-document.getElementById('search').addEventListener('keyup', function(){
-    console.log(document.getElementById('search').value);
-    userPosts(document.getElementById('search').value);
+function searchByTitle(search) {
+  debugger;
+  console.log(search);
+}
+
+document.getElementById("search").addEventListener("keyup", function () {
+  console.log(document.getElementById("search").value);
+  userPosts(document.getElementById("search").value);
 });

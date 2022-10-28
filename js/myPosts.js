@@ -1,5 +1,5 @@
-import {getToken} from "./utils/storage";
-import {GET_POSTS_URL} from "./settings/api";
+import { getToken } from "./utils/storage";
+import { GET_POSTS_URL } from "./settings/api";
 import moment from "moment";
 
 let now = moment(new Date());
@@ -8,32 +8,30 @@ const myPostsContainer = document.querySelector("#myPostsContainer");
 
 const postsNotification = document.querySelector("#postsNotification");
 
-
-
-const accessToken = getToken()
+const accessToken = getToken();
 if (!accessToken) {
-    location.href = "../index.html";
+  location.href = "../index.html";
 }
 
-(async function getAllPost(search){
-    const response = await fetch(GET_POSTS_URL, {
-        method: "GET",
-        headers: {
-            "Authorization":`Bearer ${accessToken}`
-        }
-    })
+(async function getAllPost(search) {
+  const response = await fetch(GET_POSTS_URL, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
 
-    if(response.ok){
+  if (response.ok) {
+    const posts = await response.json();
+    const listOfHtmlPosts = posts
+      .map((item) => {
+        const postTitle = item.title;
+        const postBody = item.body;
+        const createdDate = item.created;
+        const mintueSinceCreated = now.diff(createdDate, "minute");
+        console.log(createdDate);
 
-        const posts = await response.json();
-        const listOfHtmlPosts = posts.map((item)=>{
-            const postTitle = item.title;
-            const postBody = item.body;
-            const createdDate = item.created;
-            const mintueSinceCreated = now.diff(createdDate, 'minute');
-            console.log(createdDate)
-
-            return(`
+        return `
           <li class="relative px-4 py-5 bg-white focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 hover:bg-gray-50">
   <div class="flex-shrink-0">
                         <img class="w-8 h-8 rounded-full p-4" src="/img/ayo.png" alt="Neil image">
@@ -59,14 +57,15 @@ if (!accessToken) {
                 </li>
         
         
-     `)
-        }).join("");
-        myPostsContainer.insertAdjacentHTML("beforeend", listOfHtmlPosts)
-    }else{
-        const error = await response.json();
-        throw new Error(error)
-    }
-})().catch(error =>{
-    console.log(error);
-    console.log("GET POST FAILED")
+     `;
+      })
+      .join("");
+    myPostsContainer.insertAdjacentHTML("beforeend", listOfHtmlPosts);
+  } else {
+    const error = await response.json();
+    throw new Error(error);
+  }
+})().catch((error) => {
+  console.log(error);
+  console.log("GET POST FAILED");
 });
