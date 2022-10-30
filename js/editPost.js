@@ -1,8 +1,7 @@
-import { getToken } from "./utils/storage";
-import { EDIT_POST_URL } from "./settings/api";
+import {getToken} from "./utils/storage";
+import {EDIT_POST_URL} from "./settings/api";
 
 const paramString = window.location.search;
-console.log(paramString);
 const searchParam = new URLSearchParams(paramString);
 const accessToken = getToken();
 
@@ -12,36 +11,20 @@ const postTitleError = document.querySelector("#postTitleError");
 const postDescription = document.querySelector("#postDescription");
 const postDescriptionError = document.querySelector("#postDescriptionError");
 
-console.log(editPostForm);
-console.log(postTitle);
-console.log(postTitleError);
-console.log(postDescription);
-console.log(postDescriptionError);
-
 const postId = searchParam.get("post_id");
-console.log("postId:", postId);
 
-async function getPostById() {
-  const response = await fetch(
-    `https://nf-api.onrender.com/api/v1/social/posts/${postId}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
+async function getPostById(){
+  const response = await fetch(`https://nf-api.onrender.com/api/v1/social/posts/${postId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`
     }
-  );
+  });
   console.log(response);
   if (response.status === 200) {
     const data = await response.json();
-    console.log("data: ", data);
-    const { title, body, created, updated, id } = data;
-    console.log(title);
-    console.log(body);
-    console.log(created);
-    console.log(updated);
-    console.log(id);
+    const {title, body, created, updated, id} = data;
     postTitle.value = title;
     postDescription.value = body;
   } else {
@@ -49,8 +32,7 @@ async function getPostById() {
     throw err.message;
   }
 }
-getPostById().catch((err) => {
-  console.log(err);
+getPostById().catch(err =>{
 });
 
 editPostForm.addEventListener("submit", function (event) {
@@ -74,14 +56,10 @@ editPostForm.addEventListener("submit", function (event) {
   let isFormValid = isPostTitle && isPostDescription;
 
   if (isFormValid) {
-    console.log("Validation SUCCEEDED!!  🥳");
-    console.log(postTitle.value);
-    console.log(postDescription.value);
     const postData = {
-      title: postTitle.value,
-      body: postDescription.value,
+      "title": postTitle.value,
+      "body": postDescription.value
     };
-    console.log("postData: ", postData);
     const accessToken = getToken();
 
     (async function editPost() {
@@ -89,27 +67,23 @@ editPostForm.addEventListener("submit", function (event) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
+          "Authorization": `Bearer ${accessToken}`
         },
-        body: JSON.stringify(postData),
-      });
-      console.log("post Edition response: ", response);
+        body: JSON.stringify(postData)
+      })
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-        console.log("Edit POST SUCCEEDED!!  🥳 🤗🤗");
-        // Redirect to the single post view page
         location.href = `single-post.html?post_id=${postId}`;
       } else {
         const err = await response.json();
         const message = "Editing post failed";
-        throw new Error(message);
+        throw new Error(message)
       }
       editPostForm.reset();
-    })().catch((err) => {
+    })().catch(err => {
       console.log(err);
     });
   } else {
     console.log("Validation FAILED!! ");
   }
-});
+})

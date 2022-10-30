@@ -1,129 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Posts || JavaScript Course Assignment</title>
-    <script type="module" src="/js/script.js" defer></script>
-    <script type="module" src="/js/editPost.js" defer></script>
-  </head>
-  <body class="dark:bg-gray-800 bg-white">
-    <main class="relative overflow-hidden">
-      <header class="h-24 sm:h-32 flex items-center z-30 w-full bg-slate-400">
-        <div class="container mx-auto px-6 flex items-center justify-between">
-          <div
-            class="uppercase cursor-pointer text-blue-900 dark:text-white font-black text-3xl"
-          >
-            Nsebook
-          </div>
-          <div id="nav-bar" class="flex items-center">
-            <button class="lg:hidden flex flex-col ml-4">
-              <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
-              <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
-              <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1"> </span>
-            </button>
-          </div>
-        </div>
-      </header>
-    </main>
-    <div class="container p-8 mx-auto text-center">
-      <h1 class="text-3xl text-gray-700 underline">
-        <span class="text-blue-500">Edit Post</span>
-        <span class="text-yellow-600">Validation </span>
-      </h1>
-      <form id="edit-post-form" action="editPost" method="put">
-        <div>
-          <img
-            class="h-24 w-24 p-4 rounded hover:rounded-lg"
-            src="img/Ayo.png"
-            alt="an image an happy young lady"
-          />
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Edit Posts || JavaScript Course Assignment</title>
+  <script type="module" src="/js/script.js" defer></script>
+  <script type="module" src="/js/editPost.js" defer></script>
+</head>
+<body class=" dark:bg-gray-800 bg-white ">
+<main class=" relative overflow-hidden">
+  <header class="h-24 sm:h-32 flex items-center z-30 w-full bg-slate-400">
+    <div class="container mx-auto px-6 flex items-center justify-between">
+      <div class="uppercase cursor-pointer text-blue-900 dark:text-white font-black text-3xl">
+        Nsebook
+      </div>
+      <div id="nav-bar" class="flex items-center ">
 
-        <div
-          class="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600"
-        >
-          <div class="flex flex-col mb-2">
-            <label for="postTitle" class="text-gray-400"
-              >Post Title:(Required)</label
-            >
-            <input
-              id="postTitle"
-              class="p-2 rounded-md border shadow"
-              name="postTitle"
-              type="text"
-              placeholder="Post title here"
-            />
-            <span id="postTitleError" class="hidden text-sm text-red-500"
-              >Post Title is required</span
-            >
-          </div>
-          <div class="flex flex-col mb-2">
-            <label for="editor" class="text-gray-400"
-              >Create Post:(Required)</label
-            >
-            <textarea
-              rows="3"
-              name="postDescription"
-              id="postDescription"
-              class="block w-full resize-none border-0 placeholder-gray-400 focus:ring-0 sm:text-sm p-2 rounded-md"
-              placeholder="Write a description..."
-            ></textarea>
-            <span id="postDescriptionError" class="hidden text-sm text-red-500">
-              Post Description is required
-            </span>
-          </div>
-          <button
-            class="justify-center w-1/4 capitalize rounded-md border border-transparent bg-blue-400 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
-            type="submit"
-          >
-            Edit
-          </button>
-        </div>
-      </form>
-
-      <div class="container py-6 mx-auto">
-        <ul
-          id="posts-container"
-          role="list"
-          class="divide-y divide-gray-200 dark:divide-gray-700"
-        ></ul>
+        <button class="lg:hidden flex flex-col ml-4">
+                    <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
+                    </span>
+          <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
+                    </span>
+          <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
+                    </span>
+        </button>
       </div>
     </div>
-    <footer
-      class="p-4 bg-white rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-900"
-    >
-      <div class="sm:flex sm:items-center sm:justify-between">
-        <a href="#" class="flex items-center mb-4 sm:mb-0">
-          <div
-            class="uppercase text-darkBlue-500 dark:text-white font-black text-3xl"
-          >
-            Nsebook
-          </div>
-        </a>
-        <ul
-          class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400"
-        >
-          <li>
-            <a href="index.html" class="mr-4 hover:underline md:mr-6">Home</a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">Profile</a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">Post</a>
-          </li>
-        </ul>
-      </div>
-      <hr
-        class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
+  </header>
+</main>
+<div class="container p-8 mx-auto text-center">
+  <h1 class="text-3xl text-gray-700 underline"><span class="text-blue-500">Edit Post</span>
+    <span class="text-yellow-600">Validation </span></h1>
+  <form  id="edit-post-form" action="editPost" method="put" >
+    <div>
+      <img class="h-24 w-24 p-4 rounded hover:rounded-lg" src="img/Ayo.png" alt="an image an happy young lady"
       />
-      <span
-        class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"
-        >© 2022 <a href="#" class="hover:underline">Nsebo Course Assignment</a>.
-        All Rights Reserved.
-      </span>
-    </footer>
-  </body>
+    </div>
+
+    <div class="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+      <div class="flex flex-col mb-2">
+        <label for="postTitle" class="text-gray-400">Post Title:(Required)</label>
+        <input
+          id="postTitle"
+          class="p-2 rounded-md border shadow"
+          name="postTitle"
+          type="text"
+          placeholder="Post title here"
+        />
+        <span id="postTitleError" class="hidden text-sm text-red-500">Post Title is required</span>
+      </div>
+      <div class="flex flex-col mb-2">
+        <label for="editor" class="text-gray-400">Create Post:(Required)</label>
+        <textarea
+          rows="3"
+          name="postDescription"
+          id="postDescription"
+          class="block w-full resize-none border-0 placeholder-gray-400 focus:ring-0 sm:text-sm p-2 rounded-md"
+          placeholder="Write a description..."></textarea>
+        <span
+          id="postDescriptionError"
+          class="hidden text-sm text-red-500"
+        >
+                Post Description is required
+                </span>
+      </div>
+      <button class="justify-center w-1/4 capitalize rounded-md border border-transparent bg-blue-400 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" type="submit">
+        Edit
+      </button>
+    </div>
+  </form>
+
+  <div class="container py-6 mx-auto">
+    <ul  id="posts-container"
+         role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+    </ul>
+
+  </div>
+
+</div>
+<footer class="p-4 bg-white rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-900">
+  <div class="sm:flex sm:items-center sm:justify-between">
+    <a href="#" class="flex items-center mb-4 sm:mb-0">
+      <div class="uppercase text-darkBlue-500 dark:text-white font-black text-3xl">
+        Nsebook
+      </div>
+    </a>
+    <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+      <li>
+        <a href="index.html" class="mr-4 hover:underline md:mr-6 ">Home</a>
+      </li>
+      <li>
+        <a href="#" class="mr-4 hover:underline md:mr-6 ">Profile</a>
+      </li>
+      <li>
+        <a href="#" class="mr-4 hover:underline md:mr-6 ">Post</a>
+      </li>
+    </ul>
+  </div>
+  <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8">
+  <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022
+    <a href="#" class="hover:underline">Nsebo Course Assignment</a>. All Rights Reserved.
+    </span>
+</footer>
+</body>
 </html>
